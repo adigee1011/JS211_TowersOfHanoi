@@ -33,8 +33,8 @@ const printStacks = () => {
 const movePiece = (startStack,endStack) => {
   // Your code here
  
-  console.log(stacks.a[stacks.a.length - 1]);
-  console.log(stacks[a]);
+  //console.log(stacks.a[stacks.a.length - 1]);
+  //console.log(stacks[a]);
 
    if(stacks.endStack ==  []) {
       stacks.endStack.push(stacks.startStack.pop())
