@@ -36,19 +36,19 @@ const movePiece = (startStack,endStack) => {
   console.log(stacks.a[stacks.a.length - 1]);
   console.log(stacks[a]);
 
-  // if(stacks.endStack ==  []) {
-  //    stacks.endStack.push(stacks.startStack.pop())
-  //  }
+   if(stacks.endStack ==  []) {
+      stacks.endStack.push(stacks.startStack.pop())
+  }
 
   //console.log(stacks.a.pop());
 
-  // if(endStack.length > 0) {
+  if(endStack.length > 0) {
 
-  //   if (isLegal(startStack,endStack) == true){
-  //     stacks.endStack.push(stacks.startStack.pop())
-  //     checkForWin();
-  //   }
-  // }
+     if (isLegal(startStack,endStack) == true){
+       stacks.endStack.push(stacks.startStack.pop())
+       checkForWin();
+    }
+  }
 
 }
 
@@ -60,14 +60,14 @@ const isLegal = (startStack,endStack) => {
   // let y = stacks.startStack[stacks.startStack.length-1]
   // console.log(x);
   // console.log(y);
-  // if(stacks.endStack[stacks.endStack.length-1] > stacks.startStack[stacks.startStack.length-1]) {
-  //   console.log('move is legal')
-  //   return true;
-  // }
-  // else {
-  //   console.log('move is not legal')
-  //   return false;
-  // }
+  if(stacks.endStack[stacks.endStack.length-1] > stacks.startStack[stacks.startStack.length-1]) {
+     console.log('move is legal')
+     return true;
+   }
+   else {
+     console.log('move is not legal')
+     return false;
+   }
 
 
 }
