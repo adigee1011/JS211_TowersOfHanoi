@@ -17,7 +17,7 @@ const rl = readline.createInterface({
         // * 1 is the smallest
 
 let stacks = {
-  a: [3, 2, 1],
+  a: [4,3, 2, 1],
   b: [],
   c: []
 };
@@ -94,7 +94,7 @@ const isLegal = (startStack,endStack) => {
  */
 const checkForWin = () => {
   // Your code here
-  if(stacks.b.length == 3 || stacks.c.length == 3) {
+  if(stacks.b.length == 4 || stacks.c.length == 4) {
     console.log('you win')
     return true;
   }
