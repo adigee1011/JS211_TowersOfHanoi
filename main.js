@@ -17,7 +17,7 @@ const rl = readline.createInterface({
         // * 1 is the smallest
 
 let stacks = {
-  a: [4, 3, 2, 1],
+  a: [3, 2, 1],
   b: [],
   c: []
 };
@@ -30,37 +30,51 @@ const printStacks = () => {
 }
 
 // Next, what do you think this function should do?
+
+/**
+ * this function takes in two arguments: startStack (where to move the disc from) and endStack (where to move the disc to)
+ * @param {string} startStack 
+ * @param {string} endStack 
+ * @returns the pieces to a it's new stack
+ */
 const movePiece = (startStack,endStack) => {
   // Your code here
  
-  //console.log(stacks.a[stacks.a.length - 1]);
-  //console.log(stacks[a]);
+  //checks endStack length is > 0. If it is, check if the move is valid
+  //if the move is valid, move the disc
 
-   if(stacks.endStack ==  []) {
-      stacks.endStack.push(stacks.startStack.pop())
-  }
+  if(stacks[endStack].length  > 0) {
 
-  //console.log(stacks.a.pop());
+    if (isLegal(startStack,endStack) == true){
+      stacks[endStack].push(stacks[startStack].pop())
+   }
+ }
 
-  if(endStack.length > 0) {
+  // if the endStack length is 0, autmatically move the disc from startStack to endStack
 
-     if (isLegal(startStack,endStack) == true){
-       stacks.endStack.push(stacks.startStack.pop())
-       checkForWin();
-    }
+   if(stacks[endStack].length ==  0) {
+      stacks[endStack].push(stacks[startStack].pop())
   }
 
 }
 
 // Before you move, should you check if the move it actually allowed? Should 3 be able to be stacked on 2
+
+/**
+ * this function checks if the move is legal or not
+ * @param {string} startStack 
+ * @param {string} endStack 
+ * @returns true if the move is legal and false if the move is not legal
+ */
 const isLegal = (startStack,endStack) => {
   // Your code here
 
-  // let x = stacks.endStack[stacks.endStack.length-1];
-  // let y = stacks.startStack[stacks.startStack.length-1]
-  // console.log(x);
-  // console.log(y);
-  if(stacks.endStack[stacks.endStack.length-1] > stacks.startStack[stacks.startStack.length-1]) {
+
+
+  //another method of doing it is using the below line 
+  //stacks[endStack][stacks[endStack].length-1] > stacks[startStack][stacks[startStack].length - 1]
+
+  if((stacks[endStack].slice(-1) > stacks[startStack].slice(-1) && stacks[startStack].length !== 0)) {
      console.log('move is legal')
      return true;
    }
@@ -73,20 +87,37 @@ const isLegal = (startStack,endStack) => {
 }
 
 // What is a win in Towers of Hanoi? When should this function run?
+
+/**
+ * this function checks for the win
+ * @returns true if the b.length or c.length is 4
+ */
 const checkForWin = () => {
   // Your code here
-  if(stacks.b.length == 4 || stacks.c.length == 4) {
+  if(stacks.b.length == 3 || stacks.c.length == 3) {
     console.log('you win')
+    return true;
   }
 
 }
 
 // When is this function called? What should it do with its argument?
+
+/**
+ * this function takes in two arguments and then runs movePiece function
+ * //After movePiece it checks for the win
+ * @param {string} startStack 
+ * @param {string} endStack 
+ * @returns does not return anything
+ */
 const towersOfHanoi = (startStack, endStack) => {
   // Your code here
-  startStack = stacks.startStack;
-  movePiece(startStack,endStack);
+  //startStack = stacks.startStack;
 
+  movePiece(startStack,endStack);
+  if (checkForWin()){
+    return true;
+   }
 }
 
 const getPrompt = () => {
