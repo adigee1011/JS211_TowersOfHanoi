@@ -45,14 +45,14 @@ const movePiece = (startStack,endStack) => {
 
   if(stacks[endStack].length  > 0) {
 
-    if (isLegal(startStack,endStack) == true){
+    if (isLegal(startStack,endStack) == true){ //remove islegal from here
       stacks[endStack].push(stacks[startStack].pop())
    }
  }
 
   // if the endStack length is 0, autmatically move the disc from startStack to endStack
 
-   if(stacks[endStack].length ==  0) {
+   if(stacks[endStack].length ==  0) { //this should be inside islegal
       stacks[endStack].push(stacks[startStack].pop())
   }
 
@@ -69,12 +69,15 @@ const movePiece = (startStack,endStack) => {
 const isLegal = (startStack,endStack) => {
   // Your code here
 
-
+//check if start stack and end stack is same - move is not legal
+//if the obj in start stack is undefined or does not exist || if the obj in end stack is undefined or does not exist - move is not leagal
+//if end stack has length of 0, it is a valid move
+//if end stack.slice-1 is > startstack.slice-1 - move is valid
 
   //another method of doing it is using the below line 
   //stacks[endStack][stacks[endStack].length-1] > stacks[startStack][stacks[startStack].length - 1]
 
-  if((stacks[endStack].slice(-1) > stacks[startStack].slice(-1) && stacks[startStack].length !== 0)) {
+  if((stacks[endStack].slice(-1) > stacks[startStack].slice(-1) && stacks[startStack].length !== 0)) { // too much logic in one line
      console.log('move is legal')
      return true;
    }
@@ -97,6 +100,8 @@ const checkForWin = () => {
   if(stacks.b.length == 4 || stacks.c.length == 4) {
     console.log('you win')
     return true;
+  } else {
+    return false;
   }
 
 }
